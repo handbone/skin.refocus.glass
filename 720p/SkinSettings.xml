@@ -1,0 +1,1738 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">10</defaultcontrol>
+	<allowoverlay>yes</allowoverlay>
+	<onunload>RunScript(script.skinshortcuts,type=buildxml&amp;mode=single&amp;mainmenuID=9110)</onunload>
+	<onunload>ClearProperty(Fanartgrabber,skinsettings)</onunload>
+	<controls>
+
+	<!--global includes-->
+		<include>global_Background</include>
+		<include>global_Includes</include>
+		<include>windowTitle_System</include>		
+
+		<control type="group">
+			<left>65</left>
+			<top>90</top>
+			<include>transition_Content</include>
+
+		<!--CATEGORIES-->
+			<control type="grouplist" id="9001">
+				<height>800</height>
+				<itemgap>2</itemgap>
+				<!--homescreen-->
+				<control type="group">
+					<height>44</height>
+					<control type="button" id="10">
+						<label>$LOCALIZE[31200]</label>
+						<onfocus>Skin.SetString(SkinSettings,Home)</onfocus>
+						<onup>21</onup>
+						<onright>SetFocus(100)</onright>
+						<ondown>15</ondown>
+						<include>settings_Menu</include>
+					</control>
+				</control>
+				<!--artwork-->
+				<control type="group">
+					<height>44</height>
+					<control type="button" id="15">
+						<label>$LOCALIZE[31201]</label>
+						<onfocus>Skin.SetString(SkinSettings,Artwork)</onfocus>
+						<onright>200</onright>
+						<onup>10</onup>
+						<ondown>16</ondown>
+						<include>settings_Menu</include>
+					</control>
+				</control>
+				<!--views-->
+				<control type="group">
+					<height>44</height>
+					<control type="button" id="16">
+						<label>$LOCALIZE[31202]</label>
+						<onfocus>Skin.SetString(SkinSettings,Views)</onfocus>
+						<onright>300</onright>
+						<onup>15</onup>
+						<ondown>17</ondown>
+						<include>settings_Menu</include>
+					</control>
+				</control>
+				<!--addons-->
+				<control type="group">
+					<height>44</height>
+					<control type="button" id="17">
+						<label>$LOCALIZE[24001]</label>
+						<onfocus>Skin.SetString(SkinSettings,Addons)</onfocus>
+						<onright>400</onright>
+						<onup>16</onup>
+						<ondown>18</ondown>
+						<include>settings_Menu</include>
+					</control>
+				</control>
+				<!--other-->
+				<control type="group">
+					<height>44</height>
+					<control type="button" id="18">
+						<label>$LOCALIZE[31203]</label>
+						<onfocus>Skin.SetString(SkinSettings,Other)</onfocus>
+						<onright>500</onright>
+						<onup>17</onup>
+						<ondown>19</ondown>
+						<include>settings_Menu</include>
+					</control>
+				</control>				
+				<!--Background-->
+			<control type="group">
+				<height>44</height>
+				<control type="button" id="19">
+					<label>Background Opacity </label>
+					<onfocus>Skin.SetString(SkinSettings,BackgroundOpacity)</onfocus>
+					<onright>600</onright>
+					<onup>18</onup>
+					<ondown>20</ondown>
+					<include>settings_Menu</include>
+				</control>
+			</control>
+				<!--views-->
+			<control type="group">
+				<height>44</height>
+				<control type="button" id="20">
+					<label>Other Views Extra </label>
+					<onfocus>Skin.SetString(SkinSettings,Viewsdisplays)</onfocus>
+					<onright>700</onright>
+					<onup>19</onup>
+					<ondown>21</ondown>
+					<include>settings_Menu</include>
+				</control>
+			</control>
+				
+				<!--credits-->
+				<control type="group">
+					<height>44</height>
+					<control type="button" id="21">
+						<label>$LOCALIZE[31204] reFocus Glass</label>
+						<onfocus>Skin.SetString(SkinSettings,Credits)</onfocus>
+						<onright>800</onright>
+						<onup>20</onup>
+						<ondown>10</ondown>
+						<include>settings_Menu</include>
+					</control>
+				</control>				
+			</control>
+
+			<control type="group">
+				<left>302</left>
+			<!--HOME SCREEN-->
+				<control type="grouplist" id="100">
+					<width>850</width>
+					<height>598</height>
+					<onleft>9001</onleft>
+					<onright>70</onright>
+					<onup>100</onup>
+					<ondown>100</ondown>
+					<itemgap>2</itemgap>
+					<pagecontrol>70</pagecontrol>
+					<visible>Skin.String(SkinSettings,Home)</visible>					
+					<!--home menu configuration-->
+					<control type="button" id="101">
+						<label>$LOCALIZE[31210]</label>
+						<onclick>RunScript(script.skinshortcuts,type=manage&amp;nolabels=True&amp;group=mainmenu)</onclick>
+						<include>settings_Listbutton</include>
+					</control>
+					<!--menu layout-->
+					<control type="button" id="102">
+						<label>$LOCALIZE[31206]</label>
+						<label2>$VAR[home_MenuType]</label2>
+						<onclick condition="IsEmpty(Skin.String(homemenu.type))">Skin.SetString(homemenu.type,vertical)</onclick>
+						<onclick condition="StringCompare(Skin.String(homemenu.type),horizontal)">Skin.SetString(homemenu.type,vertical)</onclick>
+						<onclick condition="StringCompare(Skin.String(homemenu.type),vertical)">Skin.SetString(homemenu.type,horizontal)</onclick>
+						<include>settings_Listbutton</include>
+					</control>
+					<!--compact menu-->
+					<control type="radiobutton" id="103">
+						<label>$LOCALIZE[31209]</label>
+						<onclick>Skin.ToggleSetting(homemenu.compact)</onclick>
+						<selected>Skin.HasSetting(homemenu.compact)</selected>
+						<include>settings_Radiobutton</include>
+						<enable>StringCompare(Skin.String(homemenu.type),vertical)</enable>
+					</control>
+					<control type="radiobutton" id="104">
+					    <label>- Top Menu -</label>
+					    <onclick>Skin.ToggleSetting(topmenu.enable)</onclick>
+					    <onclick>Skin.ToggleSetting(downmenu.enable)</onclick>
+					    <selected>Skin.HasSetting(topmenu.enable)</selected>
+						<enable>!StringCompare(Skin.String(homemenu.type),vertical)</enable>
+					    <include>settings_Radiobutton</include>
+					</control>					
+					<control type="radiobutton" id="105">
+					    <label>- Down Menu -</label>
+					    <onclick>Skin.ToggleSetting(downmenu.enable)</onclick>
+					    <onclick>Skin.ToggleSetting(topmenu.enable)</onclick>
+					    <selected>!Skin.HasSetting(downmenu.enable)</selected>
+						<enable>!StringCompare(Skin.String(homemenu.type),vertical)</enable>
+					    <include>settings_Radiobutton</include>
+				   </control>
+				   <control type="radiobutton" id="106">
+					    <label>reduce opacity Menu Horizontal</label>
+					    <onclick>Skin.ToggleSetting(opacitymenu.disable)</onclick>					   
+					    <selected>Skin.HasSetting(opacitymenu.disable)</selected>
+						<enable>!StringCompare(Skin.String(homemenu.type),vertical)</enable>
+					    <include>settings_Radiobutton</include>
+				   </control>
+					<!--widgets-->
+					<control type="radiobutton" id="107">
+						<label>$LOCALIZE[31211]</label>
+						<onclick>ClearProperty(Fanartgrabber,skinsettings)</onclick>
+						<onclick>Skin.ToggleSetting(widgets.disable)</onclick>
+						<selected>Skin.HasSetting(widgets.disable)</selected>
+						<include>settings_Radiobutton</include>
+					</control>
+					<!--single image-->
+					<control type="button" id="108">
+						<label>$LOCALIZE[31212]</label>
+						<onclick>ClearProperty(Fanartgrabber,skinsettings)</onclick>
+						<onclick>Skin.Reset(HomeBackground)</onclick>
+						<onclick>Skin.Reset(home.background.image)</onclick>
+						<onclick>Skin.SetString(HomeBackground,single)</onclick>
+						<onclick>Skin.SetImage(home.background.image)</onclick>
+						<include>settings_Listbutton</include>
+					</control>
+					<!--multi image-->
+					<control type="button" id="109">
+						<label>$LOCALIZE[31213]</label>
+						<onclick>ClearProperty(Fanartgrabber,skinsettings)</onclick>
+						<onclick>Skin.Reset(HomeBackground)</onclick>
+						<onclick>Skin.Reset(home.background.folder)</onclick>
+						<onclick>Skin.SetString(HomeBackground,multi)</onclick>
+						<onclick>Skin.SetPath(home.background.folder)</onclick>
+						<include>settings_Listbutton</include>
+					</control>
+					<!--fanart grabber-->
+					<control type="button" id="110">
+						<label>$LOCALIZE[31214]</label>
+						<onclick>ActivateWindow(65)</onclick>
+						<include>settings_Radiobutton</include>
+						<enable>System.HasAddon(script.grab.fanart)</enable>
+					</control>
+					<!--date & time-->
+					<control type="radiobutton" id="111">
+						<label>$LOCALIZE[14063]</label>
+						<onclick>Skin.ToggleSetting(home.time)</onclick>
+						<selected>Skin.HasSetting(home.time)</selected>
+						<include>settings_Radiobutton</include>
+					</control>
+					<!--playing item on home-->
+					<control type="radiobutton" id="112">
+						<label>$LOCALIZE[31216]</label>
+						<onclick>Skin.ToggleSetting(home.nowplaying)</onclick>
+						<selected>Skin.HasSetting(home.nowplaying)</selected>
+						<include>settings_Radiobutton</include>
+					</control>
+					<!--statistics-->
+		   	        <control type="radiobutton" id="113">
+				    <label>Home Stats Menu Horizontal</label>
+				    <onclick>Skin.ToggleSetting(home.stats)</onclick>
+				    <selected>Skin.HasSetting(home.stats)</selected>
+					<enable>!StringCompare(Skin.String(homemenu.type),vertical)</enable>
+				    <include>settings_Radiobutton</include>
+			        </control>
+					<control type="radiobutton" id="115">
+					    <label>- Down Stats - </label>
+					    <onclick>Skin.ToggleSetting(downstats.enable)</onclick>					    
+					    <selected>!Skin.HasSetting(downstats.enable)</selected>
+						<enable>!StringCompare(Skin.String(homemenu.type),vertical)</enable>
+					    <include>settings_Radiobutton</include>
+				   </control>											
+				  	<!--item count-->
+			        <control type="radiobutton" id="116">
+				         <label>Enable Item Count info </label>
+				         <onclick>Skin.ToggleSetting(Disable.global_Itemcount)</onclick>
+						 <selected>Skin.HasSetting(Disable.global_Itemcount)</selected>
+				         <include>settings_Radiobutton</include>
+			        </control>
+					<!--big font-->
+			        <control type="radiobutton" id="117">
+				         <label>Big Font on Menu Horizontal</label>
+				         <onclick>Skin.ToggleSetting(Big_FontMenuHrz.enable)</onclick>
+						 <selected>Skin.HasSetting(Big_FontMenuHrz.enable)</selected>
+				         <include>settings_Radiobutton</include>
+			        </control>
+					
+				</control>
+			<!--ARTWORK-->
+				<control type="grouplist" id="200">
+					<width>850</width>
+					<height>598</height>
+					<onleft>9001</onleft>
+					<onright>70</onright>
+					<onup>200</onup>
+					<ondown>200</ondown>
+					<itemgap>2</itemgap>
+					<pagecontrol>70</pagecontrol>
+					<visible>Skin.String(SkinSettings,Artwork)</visible>
+					
+					<!--extra fanart-->			        
+					<!--weather fanart-->
+					<control type="radiobutton" id="204">
+						<label>$LOCALIZE[31231]</label>
+						<onclick>Skin.ToggleSetting(fanart.weather)</onclick>
+						<selected>Skin.HasSetting(fanart.weather)</selected>
+						<include>settings_Radiobutton</include>
+					</control>
+					<control type="button" id="205">
+						<label>- $LOCALIZE[31232]</label>
+						<onclick>Skin.Reset(fanart.weather.path)</onclick>
+						<onclick>Skin.SetPath(fanart.weather.path)</onclick>
+						<label2>$INFO[Skin.String(fanart.weather.path)]</label2>
+						<enable>Skin.HasSetting(fanart.weather)</enable>
+						<include>settings_Listbutton</include>
+						<visible>Skin.HasSetting(fanart.weather)</visible>
+					</control>
+					<!--visualization fanart-->
+					<control type="radiobutton" id="206">
+						<label>$LOCALIZE[31234]</label>
+						<onclick>Skin.ToggleSetting(fanart.visualization)</onclick>
+						<selected>Skin.HasSetting(fanart.visualization)</selected>
+						<include>settings_Radiobutton</include>
+					</control>
+					<!--blend visualization & fanart-->
+					<control type="radiobutton" id="208">
+						<label>- $LOCALIZE[31235]</label>
+						<onclick>Skin.ToggleSetting(fanart.visualization.blend)</onclick>
+						<selected>Skin.HasSetting(fanart.visualization.blend)</selected>
+						<visible>Skin.HasSetting(fanart.visualization)</visible>
+						<enable>Skin.HasSetting(fanart.visualization)</enable>
+						<include>settings_Radiobutton</include>
+					</control>
+					<control type="label" id="211">
+					    <label>-- ARTWORKS --</label>
+					    <font>normal</font>
+				        <textcolor>Color1</textcolor>
+					    <include>settings_Radiobutton</include>
+					</control>
+					
+					<!--Extra Fanart-->
+					<control type="radiobutton" id="212">
+				        <label>Disable Extra Fanart for Movies</label>
+				        <onclick>Skin.ToggleSetting(gallery.extrafanart)</onclick>						 			       
+				        <selected>!Skin.HasSetting(gallery.extrafanart)</selected>						
+				        <onclick>Skin.ToggleSetting(fanart.extra)</onclick>
+						<include>settings_Radiobutton</include>
+			        </control>
+			        <control type="button" id="213">
+				        <label>Download Extra Fanart</label>
+				        <onclick>XBMC.runscript(script.artwork.downloader, mode=custom, extrafanart)</onclick>
+				        <include>settings_Listbutton</include>
+				        <visible>Skin.HasSetting(gallery.extrafanart)</visible>
+				        <enable>System.HasAddon(script.artwork.downloader)</enable>
+			        </control>
+					
+					
+					<!--tv show clearlogos-->
+					<control type="radiobutton" id="214">
+						<label>$LOCALIZE[31236]</label>
+						<onclick>Skin.ToggleSetting(logos.tvshows.enable)</onclick>
+						<selected>Skin.HasSetting(logos.tvshows.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<enable>System.HasAddon(script.artwork.downloader)</enable>
+					</control>
+					<control type="button" id="215">
+						<label>- $LOCALIZE[31238]</label>
+						<onclick>XBMC.RunScript(script.artwork.downloader, mode=tvshow, silent=true, clearlogo)</onclick>
+						<include>settings_Listbutton</include>
+						<visible>Skin.HasSetting(logos.tvshows.enable)</visible>
+					</control>
+					<!--movie clearlogos-->
+					<control type="radiobutton" id="216">
+						<label>$LOCALIZE[31237]</label>
+						<onclick>Skin.ToggleSetting(logos.movies.enable)</onclick>
+						<selected>Skin.HasSetting(logos.movies.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<enable>System.HasAddon(script.artwork.downloader)</enable>
+					</control>
+					<control type="button" id="217">
+						<label>- $LOCALIZE[31238]</label>
+						<onclick>XBMC.RunScript(script.artwork.downloader, mode=movie, silent=true, clearlogo)</onclick>
+						<include>settings_Listbutton</include>
+						<visible>Skin.HasSetting(logos.movies.enable)</visible>
+					</control>
+					<!--movie banners-->
+					<control type="radiobutton" id="218">
+						<label>$LOCALIZE[31239]</label>
+						<onclick>Skin.ToggleSetting(banner.movies.enable)</onclick>
+						<selected>Skin.HasSetting(banner.movies.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<enable>System.HasAddon(script.artwork.downloader)</enable>
+					</control>
+					<control type="button" id="219">
+						<label>- $LOCALIZE[31240]</label>
+						<onclick>XBMC.RunScript(script.artwork.downloader, mode=movie, silent=true, banner)</onclick>
+						<include>settings_Listbutton</include>
+						<visible>Skin.HasSetting(banner.movies.enable)</visible>
+					</control>
+					<!--prefer landscape-->
+					<control type="radiobutton" id="220">
+						<label>$LOCALIZE[31241]</label>
+						<onclick>Skin.ToggleSetting(landscapethumb.enable)</onclick>
+						<selected>Skin.HasSetting(landscapethumb.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<enable>System.HasAddon(script.artwork.downloader)</enable>
+					</control>
+					<control type="button" id="221">
+						<label>- $LOCALIZE[31242]</label>
+						<onclick>XBMC.RunScript(script.artwork.downloader, mode=custom, silent=true, landscape)</onclick>
+						<include>settings_Listbutton</include>
+						<visible>Skin.HasSetting(landscapethumb.enable)</visible>
+					</control>
+					<control type="radiobutton" id="222">
+						<label>Authorize Clear Art for Media</label>
+						<onclick>Skin.ToggleSetting(clearartthumb.disable)</onclick>
+						<selected>Skin.HasSetting(clearartthumb.disable)</selected>
+						<include>settings_Radiobutton</include>
+						<enable>System.HasAddon(script.artwork.downloader)</enable>
+					</control>
+					<control type="button" id="223">
+						<label>Download Clear Art</label>
+						<onclick>XBMC.RunScript(script.artwork.downloader, mode=custom, silent=true, clearart)</onclick>
+						<include>settings_Listbutton</include>
+						<visible>Skin.HasSetting(clearartthumb.disable)</visible>
+					</control>
+				<!--Discart-->					
+					<!--movie Discart-->
+					<control type="radiobutton" id="224">
+						<label>Authorize Discart</label>
+						<onclick>Skin.ToggleSetting(discart.movies.enable)</onclick>
+						<selected>Skin.HasSetting(discart.movies.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<enable>System.HasAddon(script.artwork.downloader)</enable>
+					</control>
+					<control type="button" id="225">
+						<label>- Download Discart</label>
+						<onclick>XBMC.RunScript(script.artwork.downloader, mode=movie, silent=true, discart)</onclick>
+						<include>settings_Listbutton</include>
+						<visible>Skin.HasSetting(discart.movies.enable)</visible>
+					</control>					
+				</control>				
+
+			<!--VIEW SETTINGS-->					
+				<control type="grouplist" id="300">
+					<width>850</width>
+					<height>598</height>
+					<onleft>9001</onleft>
+					<onright>70</onright>
+					<onup>300</onup>
+					<ondown>300</ondown>
+					<itemgap>2</itemgap>
+					<pagecontrol>70</pagecontrol>
+					<visible>Skin.String(SkinSettings,Views)</visible>
+					<!--sortletter-->
+					<control type="radiobutton" id="301">
+						<label>$LOCALIZE[31251]</label>
+						<onclick>Skin.ToggleSetting(sortletter.enable)</onclick>
+						<selected>Skin.HasSetting(sortletter.enable)</selected>
+						<include>settings_Radiobutton</include>
+					</control>
+					<!--fullscreen button-->
+					<control type="button" id="302">
+						<label>$LOCALIZE[31252]</label>
+						<label2>$VAR[menu_Controls]</label2>
+						<onclick condition="IsEmpty(Skin.String(menu.controls))">Skin.SetString(menu.controls,none)</onclick>
+						<onclick condition="StringCompare(Skin.String(menu.controls),none)">Skin.SetString(menu.controls,player)</onclick>
+						<onclick condition="StringCompare(Skin.String(menu.controls),player)">Skin.SetString(menu.controls,fullscreen)</onclick>
+						<onclick condition="StringCompare(Skin.String(menu.controls),fullscreen)">Skin.SetString(menu.controls,none)</onclick>
+						<include>settings_Listbutton</include>
+					</control>
+					<control type="radiobutton" id="303">
+						<label>- $LOCALIZE[31283]</label>
+						<onclick>Skin.ToggleSetting(menu.playlist)</onclick>
+						<selected>Skin.HasSetting(menu.playlist)</selected>
+						<enable>StringCompare(Skin.String(menu.controls),fullscreen)</enable>
+						<include>settings_Radiobutton</include>
+					</control>
+					<!--autoscroll descriptions-->
+					<control type="radiobutton" id="304">
+						<label>$LOCALIZE[20189]</label>
+						<onclick>Skin.ToggleSetting(autoscroll.enable)</onclick>
+						<selected>Skin.HasSetting(autoscroll.enable)</selected>
+						<include>settings_Radiobutton</include>
+					</control>
+					<!--movie ratings-->
+					<control type="radiobutton" id="305">
+						<label>$LOCALIZE[31250]</label>
+						<onclick>Skin.ToggleSetting(ratings.enable)</onclick>
+						<selected>Skin.HasSetting(ratings.enable)</selected>
+						<include>settings_Radiobutton</include>
+					</control>
+					<!--media overlays-->
+					<control type="radiobutton" id="307">
+						<label>$LOCALIZE[31253]</label>
+						<onclick>Skin.ToggleSetting(overlay.enable)</onclick>
+						<selected>Skin.HasSetting(overlay.enable)</selected>
+						<include>settings_Radiobutton</include>
+					</control>
+					<control type="radiobutton" id="308"> 
+	                 	<label>disable all overlays statu info</label>	
+                        <onclick>Skin.ToggleSetting(overlay_statu.disable)</onclick>
+                        <onclick condition="Skin.HasSetting(watched.alternative)">Skin.ToggleSetting(watched.alternative)</onclick>
+                        <selected>!Skin.HasSetting(overlay_statu.disable)</selected>
+		                <include>settings_Radiobutton</include>
+					 </control>						 
+					 <control type="radiobutton" id="309">
+					    <label>Enable alternative overlays ( watched  & unwatched)</label>
+                        <onclick>Skin.ToggleSetting(watched.alternative)</onclick>
+                        <onclick condition="!Skin.HasSetting(overlay_statu.disable)">Skin.ToggleSetting(overlay_statu.disable)</onclick>
+                        <onclick condition="Skin.HasSetting(watched.original)">Skin.ToggleSetting(watched.original)</onclick>
+		                <selected>Skin.HasSetting(watched.alternative)</selected> 
+		                <include>settings_Radiobutton</include>		
+                      </control>	
+	                  <control type="radiobutton" id="310">
+					    <label>Option Unwatched</label>	
+                        <onclick>Skin.ToggleSetting(watched.original)</onclick>
+                        <onclick condition="Skin.HasSetting(watched.alternative)">Skin.ToggleSetting(watched.alternative)</onclick>
+                        <onclick condition="Skin.HasSetting(overlay.movies.disable)">Skin.ToggleSetting(overlay.movies.disable)</onclick>
+                        <onclick condition="Skin.HasSetting(overlay.tvshows.disable)">Skin.ToggleSetting(overlay.tvshows.disable)</onclick>
+                        <onclick condition="Skin.HasSetting(overlay.episodes.disable)">Skin.ToggleSetting(overlay.episodes.disable)</onclick>
+                        <onclick condition="Skin.HasSetting(overlay.files.disable)">Skin.ToggleSetting(overlay.files.disable)</onclick>
+	                    <selected>Skin.HasSetting(watched.original)</selected> 
+		                <include>settings_Radiobutton</include>			
+                      </control>
+					<!--unwatched status-->
+					<control type="radiobutton" id="311">
+						<label>$LOCALIZE[31254]</label>
+						<onclick>Skin.ToggleSetting(overlay.movies.disable)</onclick>
+						<selected>Skin.HasSetting(overlay.movies.disable)</selected>
+						<visible>Skin.HasSetting(watched.original)</visible>
+						<include>settings_Radiobutton</include>
+					</control>
+					<control type="radiobutton" id="312">
+						<label>$LOCALIZE[31255]</label>
+						<onclick>Skin.ToggleSetting(overlay.tvshows.disable)</onclick>
+						<selected>Skin.HasSetting(overlay.tvshows.disable)</selected>
+						<visible>Skin.HasSetting(watched.original)</visible>
+						<include>settings_Radiobutton</include>
+					</control>
+					<control type="radiobutton" id="313">
+						<label>$LOCALIZE[31256]</label>
+						<onclick>Skin.ToggleSetting(overlay.episodes.disable)</onclick>
+						<selected>Skin.HasSetting(overlay.episodes.disable)</selected>
+						<visible>Skin.HasSetting(watched.original)</visible>
+						<include>settings_Radiobutton</include>
+					</control>
+					<control type="radiobutton" id="314">
+						<label>$LOCALIZE[31257]</label>
+						<onclick>Skin.ToggleSetting(overlay.files.disable)</onclick>
+						<selected>Skin.HasSetting(overlay.files.disable)</selected>
+						<visible>Skin.HasSetting(watched.original)</visible>
+						<include>settings_Radiobutton</include>
+					</control>
+					<control type="radiobutton" id="315">
+						<label>$LOCALIZE[31258]</label>
+						<onclick>Skin.ToggleSetting(overlay.resumable.disable)</onclick>
+						<selected>Skin.HasSetting(overlay.resumable.disable)</selected>
+						<visible>Skin.HasSetting(watched.original)</visible>
+						<include>settings_Radiobutton</include>
+					</control>
+					<!--background video-->
+					<control type="radiobutton" id="316">
+						<label>$LOCALIZE[31215]</label>
+						<onclick>Skin.ToggleSetting(backgroundvideo.global)</onclick>
+						<selected>Skin.HasSetting(backgroundvideo.global)</selected>
+						<include>settings_Radiobutton</include>
+					</control>
+					<!--scheduled recordings overlay-->
+					<control type="radiobutton" id="320">
+						<label>$LOCALIZE[31504]</label>
+						<onclick>Skin.ToggleSetting(overlay.pvr)</onclick>
+						<selected>Skin.HasSetting(overlay.pvr)</selected>
+						<include>settings_Radiobutton</include>
+					</control>			
+					</control>
+			<!--ADDONS-->
+				<control type="grouplist" id="400">
+					<width>850</width>
+					<height>598</height>
+					<onleft>9001</onleft>
+					<onright>70</onright>
+					<onup>400</onup>
+					<ondown>400</ondown>
+					<itemgap>2</itemgap>
+					<pagecontrol>70</pagecontrol>
+					<visible>Skin.String(SkinSettings,Addons)</visible>
+					<!--globalsearch-->
+					<control type="radiobutton" id="401">
+						<label>$LOCALIZE[31260]</label>
+						<onclick>Skin.ToggleSetting(search.disable)</onclick>
+						<selected>Skin.HasSetting(search.disable)</selected>
+						<include>settings_Radiobutton</include>
+						<enable>System.HasAddon(script.globalsearch)</enable>
+					</control>
+					<!--next aired-->
+					<control type="radiobutton" id="402">
+						<label>$LOCALIZE[31259]</label>
+						<onclick>Skin.ToggleSetting(nextaired.disable)</onclick>
+						<selected>Skin.HasSetting(nextaired.disable)</selected>
+						<include>settings_Radiobutton</include>
+						<enable>System.HasAddon(script.tv.show.next.aired)</enable>
+					</control>
+					<!--artistslideshow-->
+					<control type="radiobutton" id="403">
+						<label>$LOCALIZE[31261]</label>
+						<onclick>Skin.ToggleSetting(artistslideshow.disable)</onclick>
+						<selected>Skin.HasSetting(artistslideshow.disable)</selected>
+						<include>settings_Radiobutton</include>
+						<enable>System.HasAddon(script.artistslideshow)</enable>
+					</control>
+					<!--set default lyrics add-on-->
+					<control type="button" id="404">
+						<label>$LOCALIZE[31607]</label>
+						<label2>$INFO[System.AddonTitle(Skin.String(addon.lyrics.path))]</label2>
+						<onclick>Skin.SetAddon(addon.lyrics.path,xbmc.python.lyrics)</onclick>
+						<include>settings_Listbutton</include>
+					</control>
+					<!--tvtunes-->
+					<control type="radiobutton" id="405">
+						<label>$LOCALIZE[31282]</label>
+						<onclick>Skin.ToggleSetting(tvtunes.enable)</onclick>
+						<selected>Skin.HasSetting(tvtunes.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<enable>System.HasAddon(script.tvtunes)</enable>
+					</control>
+					<!--Video Extra-->
+					<control type="radiobutton" id="406">
+						<label>Disable Video Extras</label>
+						<onclick>Skin.ToggleSetting(Enable.videoextras)</onclick>						
+						<selected>Skin.HasSetting(Enable.videoextras)</selected>						
+						<include>settings_Radiobutton</include>
+						<enable>System.HasAddon(script.videoextras)</enable>
+					</control>
+					<control type="radiobutton" id="407">
+						<label>Disable Video Extras Overlays</label>
+						<onclick>Skin.ToggleSetting(Enable.videoextrasOverlays)</onclick>
+						<selected>Skin.HasSetting(Enable.videoextrasOverlays)</selected>
+						<enable>!Skin.HasSetting(Enable.videoextras)</enable>
+						<include>settings_Radiobutton</include>
+						<enable>System.HasAddon(script.videoextras)</enable>
+					</control>
+				</control>
+
+			<!--OTHER-->
+				<control type="grouplist" id="500">
+					<width>850</width>
+					<height>598</height>
+					<onleft>9001</onleft>
+					<onright>70</onright>
+					<onup>500</onup>
+					<ondown>500</ondown>
+					<itemgap>2</itemgap>
+					<pagecontrol>70</pagecontrol>
+					<visible>Skin.String(SkinSettings,Other)</visible>
+					<!--keyboard-->
+					<control type="radiobutton" id="501">
+						<label>$LOCALIZE[31263]</label>
+						<onclick>Skin.ToggleSetting(keyboard.enable)</onclick>
+						<selected>!Skin.HasSetting(keyboard.enable)</selected>
+						<include>settings_Radiobutton</include>
+					</control>
+					<!--kiosk mode-->
+					<control type="radiobutton" id="502">
+						<label>$LOCALIZE[31264]</label>
+						<onclick>Skin.ToggleSetting(global.kiosk)</onclick>
+						<selected>Skin.HasSetting(global.kiosk)</selected>
+						<include>settings_Radiobutton</include>
+					</control>
+					<!--clean library-->
+					<control type="radiobutton" id="503">
+						<label>$LOCALIZE[31265]</label>
+						<onclick>Skin.ToggleSetting(cleanlibrary.enable)</onclick>
+						<selected>Skin.HasSetting(cleanlibrary.enable)</selected>
+						<include>settings_Radiobutton</include>
+					</control>
+					<!--reset skin settings-->
+					<control type="button" id="510">
+						<label>[COLOR=Warning]$LOCALIZE[31713][/COLOR]</label>
+						<!--ask confirmation-->
+						<onclick>SetProperty(ConfirmDialog,ResetSettings,200)</onclick>
+						<onclick>ActivateWindow(200)</onclick>
+						<include>settings_Listbutton</include>
+					</control>					
+				</control>
+				
+				<!--Background Opacity-->
+				   <control type="grouplist" id="600">
+					<width>850</width>
+					<height>598</height>
+					<onleft>9001</onleft>
+					<onright>70</onright>
+					<onup>600</onup>
+					<ondown>600</ondown>
+					<itemgap>2</itemgap>
+					<pagecontrol>70</pagecontrol>
+					<visible>Skin.String(SkinSettings,BackgroundOpacity)</visible>			
+			     <!--global fanart-->
+			        <control type="button" id="602">
+			            <label>[UPPERCASE]Choose combinations.Buttons enable or disable different backgrounds that create colors.( Refocus / Refocus Big or Conq )[/UPPERCASE]</label>
+						<onclick>noop</onclick>
+						<textcolor>Color2</textcolor>
+						<include>settings_Listbutton</include>
+					</control>			
+					<control type="radiobutton" id="603">
+						<label>$LOCALIZE[31230]</label>
+						<onclick>Skin.ToggleSetting(fanart.global)</onclick>
+						<selected>!Skin.HasSetting(fanart.global)</selected>
+						<include>settings_Radiobutton</include>
+					</control>
+			        <control type="radiobutton" id="605">
+			        	<label>Enable Opacity</label>
+				        <onclick>Skin.ToggleSetting(background.opacity.enabled)</onclick>
+				        <onclick>Skin.SetString(background.opacity,100)</onclick>
+				        <selected>Skin.HasSetting(background.opacity.enabled)</selected>
+				        <include>settings_Radiobutton</include>
+			        </control>			
+			        <control type="radiobutton" id="606">
+				        <label>Enable / Disable Color Refocus</label>
+				        <onclick>Skin.ToggleSetting(basecolorrefocus.opacity.enabled)</onclick>
+				        <onclick>Skin.SetString(background.opacity,100)</onclick>
+				        <selected>Skin.HasSetting(basecolorrefocus.opacity.enabled)</selected>
+				        <include>settings_Radiobutton</include>
+			         </control>			
+			         <control type="radiobutton" id="607">
+				        <label>Enable / Disable Color Conq</label>
+				        <onclick>Skin.ToggleSetting(conq.opacity.enabled)</onclick>
+				        <onclick>Skin.SetString(background.opacity,100)</onclick>
+				        <selected>!Skin.HasSetting(conq.opacity.enabled)</selected>
+				        <include>settings_Radiobutton</include>
+			         </control>
+					 
+						<!--Overlays Shelf-->
+					<control type="radiobutton" id="608">
+					    <label>overlays shelf Refocus Glass</label>
+					    <onclick>Skin.ToggleSetting(overlaysglass.enable)</onclick>
+					    <onclick>Skin.ToggleSetting(overlaysrefocus.enable)</onclick>
+					    <selected>!Skin.HasSetting(overlaysglass.enable)</selected>
+					    <include>settings_Radiobutton</include>
+					</control>					
+					<control type="radiobutton" id="609">
+					    <label>overlays shelf Refocus Original</label>
+					    <onclick>Skin.ToggleSetting(overlaysrefocus.enable)</onclick>
+					    <onclick>Skin.ToggleSetting(overlaysglass.enable)</onclick>
+					    <selected>Skin.HasSetting(overlaysrefocus.enable)</selected>
+					    <include>settings_Radiobutton</include>
+				   </control>					
+			       <control type="radiobutton" id="610">
+			        	<label>Enable For Media</label>
+				        <onclick>Skin.ToggleSetting(background.opacitymediaonly)</onclick>
+				        <selected>Skin.HasSetting(background.opacitymediaonly)</selected>
+				        <include>settings_Radiobutton</include>
+				        <visible>Skin.HasSetting(background.opacity.enabled)</visible>
+			       </control>				   
+			       <control type="label" id="612">
+				        <label>OPACITY %</label>
+				        <font>normal</font>
+				        <include>settings_Radiobutton</include>
+				        <visible>Skin.HasSetting(background.opacity.enabled)</visible>
+			        </control>
+					<control type="button" id="613">
+				        <label>Opacity Refocus Glass</label>
+				        <onclick>Skin.SetString(background.opacity,refocus)</onclick>				
+				        <selected>Skin.HasSetting(background.opacity)</selected>
+				        <include>settings_Radiobutton</include>
+				        <visible>Skin.HasSetting(background.opacity.enabled)</visible>
+			        </control>
+					<control type="button" id="614">
+				        <label>Opacity Refocus</label>
+				        <onclick>Skin.SetString(background.opacity,60)</onclick>
+				        <selected>Skin.HasSetting(background.opacity)</selected>
+				        <include>settings_Radiobutton</include>
+				        <visible>Skin.HasSetting(background.opacity.enabled)</visible>
+			         </control>
+			         <control type="button" id="615">
+				        <label>100%</label>
+				        <onclick>Skin.SetString(background.opacity,100)</onclick>
+				        <selected>Skin.HasSetting(background.opacity)</selected>
+				        <include>settings_Radiobutton</include>
+				        <visible>Skin.HasSetting(background.opacity.enabled)</visible>
+			         </control>
+			         <control type="button" id="616">
+				        <label>90%</label>
+				        <onclick>Skin.SetString(background.opacity,90)</onclick>
+				        <selected>Skin.HasSetting(background.opacity)</selected>
+				        <include>settings_Radiobutton</include>
+				        <visible>Skin.HasSetting(background.opacity.enabled)</visible>
+			         </control>
+			            <control type="button" id="617">
+				        <label>80%</label>
+				        <onclick>Skin.SetString(background.opacity,80)</onclick>
+				        <selected>Skin.HasSetting(background.opacity)</selected>
+				        <include>settings_Radiobutton</include>
+				        <visible>Skin.HasSetting(background.opacity.enabled)</visible>
+			        </control>
+			        <control type="button" id="618">
+				        <label>70%</label>
+				        <onclick>Skin.SetString(background.opacity,70)</onclick>
+				    <selected>Skin.HasSetting(background.opacity)</selected>
+				        <include>settings_Radiobutton</include>
+				        <visible>Skin.HasSetting(background.opacity.enabled)</visible>
+			        </control>			        
+			        <control type="button" id="621">
+				        <label>50%</label>
+				        <onclick>Skin.SetString(background.opacity,50)</onclick>
+				        <selected>Skin.HasSetting(background.opacity)</selected>
+				        <include>settings_Radiobutton</include>
+				        <visible>Skin.HasSetting(background.opacity.enabled)</visible>
+			        </control>
+			        <control type="button" id="622">
+				        <label>40%</label>
+				        <onclick>Skin.SetString(background.opacity,40)</onclick>
+				        <selected>Skin.HasSetting(background.opacity)</selected>
+				        <include>settings_Radiobutton</include>
+				        <visible>Skin.HasSetting(background.opacity.enabled)</visible>
+			         </control>
+			         <control type="button" id="623">
+				        <label>30%</label>
+				        <onclick>Skin.SetString(background.opacity,30)</onclick>
+				        <selected>Skin.HasSetting(background.opacity)</selected>
+				        <include>settings_Radiobutton</include>
+				        <visible>Skin.HasSetting(background.opacity.enabled)</visible>
+			         </control>
+			         <control type="button" id="624">
+			            <label>20%</label>
+				        <onclick>Skin.SetString(background.opacity,20)</onclick>
+				        <selected>Skin.HasSetting(background.opacity)</selected>
+				        <include>settings_Radiobutton</include>
+				        <visible>Skin.HasSetting(background.opacity.enabled)</visible>
+			         </control>	
+				  </control>				
+				
+				<!--Views-->			
+				<control type="grouplist" id="700">
+					<width>850</width>
+					<height>598</height>
+					<onleft>9001</onleft>
+					<onright>70</onright>
+					<onup>700</onup>
+					<ondown>700</ondown>
+					<itemgap>2</itemgap>
+					<pagecontrol>70</pagecontrol>
+					<visible>Skin.String(SkinSettings,Viewsdisplays)</visible>
+					<!--List Glass-->
+					<control type="radiobutton" id="701">
+					    <label>LIST Small</label>
+						<font>normal</font>
+                        <onclick>Skin.ToggleSetting(listsmall.enable)</onclick>
+                        <onclick condition="Skin.HasSetting(ListPoster.Glass)">Skin.ToggleSetting(ListPoster.Glass)</onclick>
+                        <onclick condition="Skin.HasSetting(ListLandscape.Glass)">Skin.ToggleSetting(ListLandscape.Glass)</onclick>
+						<onclick condition="Skin.HasSetting(ListSmalldiscart.movies.enable)">Skin.ToggleSetting(ListSmalldiscart.movies.enable)</onclick>
+						<onclick condition="Skin.HasSetting(ListSmall.case)">Skin.ToggleSetting(ListSmall.case)</onclick>
+						<selected>Skin.HasSetting(listsmall.enable)</selected> 
+		                <include>settings_Radiobutton</include>			
+                    </control>					
+					<control type="radiobutton" id="702">					
+                        <label> - Glass Poster - </label>
+		                <onclick>Skin.ToggleSetting(ListPoster.Glass)</onclick>
+		                <selected>Skin.HasSetting(ListPoster.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(listsmall.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="703">					
+                        <label> - Glass Landscape - </label>
+		                <onclick>Skin.ToggleSetting(ListLandscape.Glass)</onclick>
+		                <selected>Skin.HasSetting(ListLandscape.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(listsmall.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="704">					
+                        <label> - Discart - </label>
+		                <onclick>Skin.ToggleSetting(ListSmalldiscart.movies.enable)</onclick>
+		                <selected>Skin.HasSetting(ListSmalldiscart.movies.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(listsmall.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="705">					
+                        <label> - Case - </label>
+		                <onclick>Skin.ToggleSetting(ListSmall.case)</onclick>
+		                <selected>Skin.HasSetting(ListSmall.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(listsmall.enable)</visible>
+		            </control>
+					<!--Strip -->
+					<control type="radiobutton" id="707">
+					    <label>STRIP</label>
+						<font>normal</font>
+                        <onclick>Skin.ToggleSetting(strip.enable)</onclick>
+                        <onclick condition="Skin.HasSetting(StripPoster.Glass)">Skin.ToggleSetting(StripPoster.Glass)</onclick>
+                        <onclick condition="Skin.HasSetting(StripPosterSmall.Glass)">Skin.ToggleSetting(StripPosterSmall.Glass)</onclick>
+						<onclick condition="Skin.HasSetting(StripPoster.case)">Skin.ToggleSetting(StripPoster.case)</onclick>
+						<onclick condition="Skin.HasSetting(StripPosterSmall.case)">Skin.ToggleSetting(StripPosterSmall.case)</onclick>
+						<selected>Skin.HasSetting(strip.enable)</selected> 
+		                <include>settings_Radiobutton</include>			
+                    </control>					
+					<control type="radiobutton" id="708">					
+                        <label> - Glass Poster - </label>
+		                <onclick>Skin.ToggleSetting(StripPoster.Glass)</onclick>
+		                <selected>Skin.HasSetting(StripPoster.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(strip.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="709">					
+                        <label> - Glass Poster Small - </label>
+		                <onclick>Skin.ToggleSetting(StripPosterSmall.Glass)</onclick>
+		                <selected>Skin.HasSetting(StripPosterSmall.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(strip.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="710">					
+                        <label> - Case (Big) - </label>
+		                <onclick>Skin.ToggleSetting(StripPoster.case)</onclick>
+		                <selected>Skin.HasSetting(StripPoster.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(strip.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="711">					
+                        <label> - Case (Small) - </label>
+		                <onclick>Skin.ToggleSetting(StripPosterSmall.case)</onclick>
+		                <selected>Skin.HasSetting(StripPosterSmall.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(strip.enable)</visible>
+		            </control>
+					<!--Poster & Fanart -->
+					<control type="radiobutton" id="715">
+					    <label>POSTER & FANART</label>
+						<font>normal</font>
+                        <onclick>Skin.ToggleSetting(posterfanart.enable)</onclick>
+                        <onclick condition="Skin.HasSetting(PosterFanartPoster.Glass)">Skin.ToggleSetting(PosterFanartPoster.Glass)</onclick>  
+						<onclick condition="Skin.HasSetting(PosterFanartPosterSmall.Glass)">Skin.ToggleSetting(PosterFanartPosterSmall.Glass)</onclick>
+						<onclick condition="Skin.HasSetting(PosterFanartDiscart.movies.enable)">Skin.ToggleSetting(PosterFanartDiscart.movies.enable)</onclick>
+						<onclick condition="Skin.HasSetting(PosterFanarPoster.case)">Skin.ToggleSetting(PosterFanaroster.case)</onclick>
+						<onclick condition="Skin.HasSetting(PosterFanarPosterSmall.case)">Skin.ToggleSetting(PosterFanarPosterSmall.case)</onclick>
+						<selected>Skin.HasSetting(posterfanart.enable)</selected> 
+		                <include>settings_Radiobutton</include>			
+                    </control>
+					<control type="radiobutton" id="716">					
+                        <label> - Glass Poster - </label>
+		                <onclick>Skin.ToggleSetting(PosterFanartPoster.Glass)</onclick>
+		                <selected>Skin.HasSetting(PosterFanartPoster.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(posterfanart.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="717">					
+                        <label> - Glass Poster Small - </label>
+		                <onclick>Skin.ToggleSetting(PosterFanartPosterSmall.Glass)</onclick>
+		                <selected>Skin.HasSetting(PosterFanartPosterSmall.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(posterfanart.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="718">					
+                        <label> - Discart - </label>
+		                <onclick>Skin.ToggleSetting(PosterFanartDiscart.movies.enable)</onclick>
+		                <selected>Skin.HasSetting(PosterFanartDiscart.movies.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(posterfanart.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="7180">					
+                        <label> - Case (Big) - </label>
+		                <onclick>Skin.ToggleSetting(PosterFanartPoster.case)</onclick>
+		                <selected>Skin.HasSetting(PosterFanartPoster.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(posterfanart.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="7181">					
+                        <label> - Case (Small) - </label>
+		                <onclick>Skin.ToggleSetting(PosterFanartPosterSmall.case)</onclick>
+		                <selected>Skin.HasSetting(PosterFanartPosterSmall.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(posterfanart.enable)</visible>
+		            </control>
+					
+					<!--Wall-->
+					<control type="radiobutton" id="719">
+					    <label>WALL</label>
+						<font>normal</font>
+                        <onclick>Skin.ToggleSetting(wall.enable)</onclick>
+                        <onclick condition="Skin.HasSetting(WallPoster.Glass)">Skin.ToggleSetting(WallPoster.Glass)</onclick>  
+						<onclick condition="Skin.HasSetting(WallDiscart.movies.enable)">Skin.ToggleSetting(WallDiscart.movies.enable)</onclick>
+						<onclick condition="Skin.HasSetting(WallPoster.case)">Skin.ToggleSetting(WallPoster.case)</onclick>
+						<selected>Skin.HasSetting(wall.enable)</selected> 
+						<include>settings_Radiobutton</include>			
+                    </control>
+					<control type="radiobutton" id="720">					
+                        <label> - Glass Poster - </label>
+		                <onclick>Skin.ToggleSetting(WallPoster.Glass)</onclick>
+		                <selected>Skin.HasSetting(WallPoster.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(wall.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="721">					
+                        <label> - Discart - </label>
+		                <onclick>Skin.ToggleSetting(WallDiscart.movies.enable)</onclick>
+		                <selected>Skin.HasSetting(WallDiscart.movies.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(wall.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="722">					
+                        <label> - Case - </label>
+		                <onclick>Skin.ToggleSetting(WallPoster.case)</onclick>
+		                <selected>Skin.HasSetting(WallPoster.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(wall.enable)</visible>
+		            </control>
+					
+					<!--Poster & Landscape-->					
+					<control type="radiobutton" id="723">					
+						<label>POSTER & LANDSCAPE</label>
+						<font>normal</font>
+						<onclick>Skin.ToggleSetting(posterlandscape.enable)</onclick>
+						<onclick condition="Skin.HasSetting(PosterLandscapeDiscart.movies.enable)">Skin.ToggleSetting(PosterLandscapeDiscart.movies.enable)</onclick> 
+						<selected>Skin.HasSetting(posterlandscape.enable)</selected>
+						<include>settings_Radiobutton</include>						
+					</control>	
+					<control type="radiobutton" id="724">					
+                        <label> - Discart - </label>
+		                <onclick>Skin.ToggleSetting(PosterLandscapeDiscart.movies.enable)</onclick>
+		                <selected>Skin.HasSetting(PosterLandscapeDiscart.movies.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(posterlandscape.enable)</visible>
+		            </control>
+					
+					<!-- Shelf-->
+					<control type="radiobutton" id="726">					
+						<label>SHELF</label>
+						<font>normal</font>
+						<onclick>Skin.ToggleSetting(shelf.enable)</onclick>
+						<onclick condition="Skin.HasSetting(ShelfPoster.Glass)">Skin.ToggleSetting(ShelfPoster.Glass)</onclick>
+						<onclick condition="Skin.HasSetting(ShelfDiscart.movies.enable)">Skin.ToggleSetting(ShelfDiscart.movies.enable)</onclick>
+						<onclick condition="Skin.HasSetting(ShelfPoster.case)">Skin.ToggleSetting(ShelfPoster.case)</onclick> 
+						<selected>Skin.HasSetting(shelf.enable)</selected>
+						<include>settings_Radiobutton</include>						
+					</control>
+					<control type="radiobutton" id="727">					
+                        <label> - Glass Poster - </label>
+		                <onclick>Skin.ToggleSetting(ShelfPoster.Glass)</onclick>
+		                <selected>Skin.HasSetting(ShelfPoster.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(shelf.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="728">					
+                        <label> - Discart - </label>
+		                <onclick>Skin.ToggleSetting(ShelfDiscart.movies.enable)</onclick>
+		                <selected>Skin.HasSetting(ShelfDiscart.movies.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(shelf.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="729">					
+                        <label> - Case - </label>
+		                <onclick>Skin.ToggleSetting(ShelfPoster.case)</onclick>
+		                <selected>Skin.HasSetting(ShelfPoster.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(shelf.enable)</visible>
+		            </control>
+					
+					<!--Simple-->
+					<control type="radiobutton" id="730">					
+						<label>SIMPLE</label>
+						<font>normal</font>
+						<onclick>Skin.ToggleSetting(simple.enable)</onclick>
+						<onclick condition="Skin.HasSetting(SimplePoster.Glass)">Skin.ToggleSetting(SimplePoster.Glass)</onclick>
+						<onclick condition="Skin.HasSetting(SimplePoster.case)">Skin.ToggleSetting(SimplePoster.case)</onclick> 
+						<selected>Skin.HasSetting(simple.enable)</selected>
+						<include>settings_Radiobutton</include>						
+					</control>
+					<control type="radiobutton" id="731">					
+                        <label> - Glass Poster - </label>
+		                <onclick>Skin.ToggleSetting(SimplePoster.Glass)</onclick>
+		                <selected>Skin.HasSetting(SimplePoster.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(simple.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="732">					
+                        <label> - Case - </label>
+		                <onclick>Skin.ToggleSetting(SimplePoster.case)</onclick>
+		                <selected>Skin.HasSetting(SimplePoster.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(simple.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="733">					
+                        <label> - Discart - </label>
+		                <onclick>Skin.ToggleSetting(SimpleDiscart.movies.enable)</onclick>
+		                <selected>Skin.HasSetting(SimpleDiscart.movies.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(simple.enable)</visible>
+		            </control>
+					<!--Big Fanart-->
+					<control type="radiobutton" id="740">					
+						<label>BIG FANART</label>
+						<font>normal</font>
+						<onclick>Skin.ToggleSetting(bigfanart.enable)</onclick>
+						<selected>Skin.HasSetting(bigfanart.enable)</selected>
+						<include>settings_Radiobutton</include>						
+					</control>
+					<!--Gallery-->
+					<control type="radiobutton" id="750">					
+						<label>GALLERY</label>
+						<font>normal</font>
+						<onclick>Skin.ToggleSetting(gallery.enable)</onclick>
+						<onclick condition="Skin.HasSetting(GalleryFullDiscart.movies.enable)">Skin.ToggleSetting(GalleryFullDiscart.movies.enable)</onclick>
+						<onclick condition="Skin.HasSetting(Gallery.Glass)">Skin.ToggleSetting(Gallery.Glass)</onclick>
+						
+						<selected>Skin.HasSetting(gallery.enable)</selected>
+						<include>settings_Radiobutton</include>						
+					</control>
+					<control type="radiobutton" id="751">					
+                        <label> - Glass - </label>
+		                <onclick>Skin.ToggleSetting(Gallery.Glass)</onclick>
+		                <selected>Skin.HasSetting(Gallery.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<selected>Skin.HasSetting(gallery.enable)</selected>
+		            </control>
+					<control type="radiobutton" id="752">					
+                        <label> - Discart - </label>
+		                <onclick>Skin.ToggleSetting(GalleryFullDiscart.movies.enable)</onclick>
+		                <selected>Skin.HasSetting(GalleryFullDiscart.movies.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(gallery.enable)</visible>
+		            </control>
+					<!--StripFanart-->
+					<control type="radiobutton" id="760">					
+						<label>STRIP FANART</label>
+						<font>normal</font>
+						<onclick>Skin.ToggleSetting(stripfanart.enable)</onclick>
+						<onclick condition="Skin.HasSetting(StripFanartPoster.Glass)">Skin.ToggleSetting(StripFanartPoster.Glass)</onclick>
+						<onclick condition="Skin.HasSetting(StripFanartPosterSmall.Glass)">Skin.ToggleSetting(StripFanartPosterSmall.Glass)</onclick>
+						<onclick condition="Skin.HasSetting(StripFanartPoster.case)">Skin.ToggleSetting(StripFanartPoster.case)</onclick> 
+						<onclick condition="Skin.HasSetting(StripFanartPoster.case)">Skin.ToggleSetting(StripFanartPoster.case)</onclick> 
+						<onclick condition="Skin.HasSetting(StripFanartPosterSmall.case)">Skin.ToggleSetting(StripFanartPosterSmall.case)</onclick>
+						<onclick condition="Skin.HasSetting(StripFanartDiscart.movies.enable)">Skin.ToggleSetting(StripFanartDiscart.movies.enable)</onclick>
+						
+						<selected>Skin.HasSetting(stripfanart.enable)</selected>
+						<include>settings_Radiobutton</include>						
+					</control>
+					<control type="radiobutton" id="761">					
+                        <label> - Glass (Big)- </label>
+		                <onclick>Skin.ToggleSetting(StripFanartPoster.Glass)</onclick>
+		                <selected>Skin.HasSetting(StripFanartPoster.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(stripfanart.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="762">					
+                        <label> - Glass (Small)- </label>
+		                <onclick>Skin.ToggleSetting(StripFanartPosterSmall.Glass)</onclick>
+		                <selected>Skin.HasSetting(StripFanartPosterSmall.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(stripfanart.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="763">					
+                        <label> - Case (Big)- </label>
+		                <onclick>Skin.ToggleSetting(StripFanartPoster.case)</onclick>
+		                <selected>Skin.HasSetting(StripFanartPoster.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(stripfanart.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="764">					
+                        <label> - Case (Small)- </label>
+		                <onclick>Skin.ToggleSetting(StripFanartPosterSmall.case)</onclick>
+		                <selected>Skin.HasSetting(StripFanartPosterSmall.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(stripfanart.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="765">					
+                        <label> - Discart - </label>
+		                <onclick>Skin.ToggleSetting(StripFanartDiscart.movies.enable)</onclick>
+		                <selected>Skin.HasSetting(StripFanartDiscart.movies.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(stripfanart.enable)</visible>
+		            </control>
+					
+					<!--Poster List-->
+					<control type="radiobutton" id="766">					
+						<label>POSTER LIST</label>
+						<font>normal</font>
+						<onclick>Skin.ToggleSetting(posterlist.enable)</onclick>
+						<onclick condition="Skin.HasSetting(PosterListPoster.Glass)">Skin.ToggleSetting(PosterListPoster.Glass)</onclick>
+						<onclick condition="Skin.HasSetting(PosterListPoster.case)">Skin.ToggleSetting(PosterListPoster.case)</onclick>
+						<selected>Skin.HasSetting(posterlist.enable)</selected>
+						<include>settings_Radiobutton</include>						
+					</control>					
+					<control type="radiobutton" id="767">					
+                        <label> - Glass - </label>
+		                <onclick>Skin.ToggleSetting(PosterListPoster.Glass)</onclick>
+		                <selected>Skin.HasSetting(PosterListPoster.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(posterlist.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="768">					
+                        <label> - Case - </label>
+		                <onclick>Skin.ToggleSetting(PosterListPoster.case)</onclick>
+		                <selected>Skin.HasSetting(PosterListPoster.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(posterlist.enable)</visible>
+		            </control>
+					<!--Episode-->
+					<control type="radiobutton" id="7680">					
+						<label>EPISODE</label>
+						<font>normal</font>
+						<onclick>Skin.ToggleSetting(episode.enable)</onclick>
+						<onclick condition="Skin.HasSetting(EpisodePoster.Glass)">Skin.ToggleSetting(EpisodePoster.Glass)</onclick>
+						<onclick condition="Skin.HasSetting(EpisodePoster.case)">Skin.ToggleSetting(EpisodePoster.case)</onclick>
+						<onclick condition="Skin.HasSetting(EpisodeLandscape.Glass)">Skin.ToggleSetting(EpisodeLandscape.Glass)</onclick>
+						<selected>Skin.HasSetting(episode.enable)</selected>
+						<include>settings_Radiobutton</include>						
+					</control>
+					<control type="radiobutton" id="7681">					
+                        <label> - Glass - </label>
+		                <onclick>Skin.ToggleSetting(EpisodePoster.Glass)</onclick>
+		                <selected>Skin.HasSetting(EpisodePoster.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(episode.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="7682">					
+                        <label> - Case - </label>
+		                <onclick>Skin.ToggleSetting(EpisodePoster.case)</onclick>
+		                <selected>Skin.HasSetting(EpisodePoster.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(episode.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="7683">					
+                        <label> - Glass Landscape - </label>
+		                <onclick>Skin.ToggleSetting(EpisodeLandscape.Glass)</onclick>
+		                <selected>Skin.HasSetting(EpisodeLandscape.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(episode.enable)</visible>
+		            </control>
+					<!--Movies Sets-->
+					<control type="radiobutton" id="7685">					
+						<label>MOVIES SETS</label>
+						<font>normal</font>
+						<onclick>Skin.ToggleSetting(moviesset.enable)</onclick>
+						<onclick condition="Skin.HasSetting(MoviesSetsDiscart.movies.enable)">Skin.ToggleSetting(MoviesSetsDiscart.movies.enable)</onclick>
+						<onclick condition="Skin.HasSetting(MoviesSetsExtraThumbs.movies.enable)">Skin.HasSetting(MoviesSetsExtraThumbs.movies.enable)</onclick>
+						<selected>Skin.HasSetting(moviesset.enable)</selected>
+						<include>settings_Radiobutton</include>						
+					</control>
+					<control type="radiobutton" id="7686">					
+                        <label> - Discart - </label>
+		                <onclick>Skin.ToggleSetting(MoviesSetsDiscart.movies.enable)</onclick>
+		                <selected>Skin.HasSetting(MoviesSetsDiscart.movies.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<selected>Skin.HasSetting(moviesset.enable)</selected>
+		            </control>
+					<control type="radiobutton" id="7687">					
+                        <label> - Extra Thumbs - </label>
+		                <onclick>Skin.ToggleSetting(MoviesSetsExtraThumbs.movies.enable)</onclick>
+		                <selected>Skin.HasSetting(MoviesSetsExtraThumbs.movies.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<selected>Skin.HasSetting(moviesset.enable)</selected>
+		            </control>
+					<!--Movies Sets 2-->
+					<control type="radiobutton" id="7688">					
+						<label>MOVIES SETS 2</label>
+						<font>normal</font>
+						<onclick>Skin.ToggleSetting(moviesset2.enable)</onclick>
+						<onclick condition="Skin.HasSetting(MoviesSets2Discart.movies.enable)">Skin.ToggleSetting(MoviesSets2Discart.movies.enable)</onclick>
+						<onclick condition="Skin.HasSetting(MoviesSets2OverlaysBackground.movies.enable)">Skin.ToggleSetting(MoviesSets2OverlaysBackground.movies.enable)</onclick>
+						<onclick condition="Skin.HasSetting(MoviesSets2Landscape.Glass)">Skin.ToggleSetting(MoviesSets2Landscape.Glass)</onclick>
+						
+						<selected>Skin.HasSetting(moviesset2.enable)</selected>
+						<include>settings_Radiobutton</include>						
+					</control>
+					<control type="radiobutton" id="7689">					
+                        <label> - Discart - </label>
+		                <onclick>Skin.ToggleSetting(MoviesSets2Discart.movies.enable)</onclick>
+		                <selected>Skin.HasSetting(MoviesSets2Discart.movies.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<selected>Skin.HasSetting(moviesset2.enable)</selected>
+		            </control>
+					<control type="radiobutton" id="7690">					
+                        <label> - Overlays Background Discart - </label>
+		                <onclick>Skin.ToggleSetting(MoviesSets2OverlaysBackground.movies.enable)</onclick>
+		                <selected>Skin.HasSetting(MoviesSets2OverlaysBackground.movies.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<selected>Skin.HasSetting(moviesset2.enable)</selected>
+		            </control>
+					<control type="radiobutton" id="7691">					
+                        <label> - Glass Landscape - </label>
+		                <onclick>Skin.ToggleSetting(MoviesSets2Landscape.Glass)</onclick>
+		                <selected>Skin.HasSetting(MoviesSets2Landscape.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<selected>Skin.HasSetting(moviesset2.enable)</selected>
+		            </control>
+					
+					<!--others Views-->
+					<control type="radiobutton" id="770">
+					    <label>Others Option's Views</label>
+						<font>normal</font>						
+                        <onclick>Skin.ToggleSetting(other.enable)</onclick>
+                    <!--List-->   
+					   <onclick condition="Skin.HasSetting(List2Poster.Glass)">Skin.ToggleSetting(List2Poster.Glass)</onclick>
+                        <onclick condition="Skin.HasSetting(List2Landscape.Glass)">Skin.ToggleSetting(List2Landscape.Glass)</onclick>
+						<onclick condition="Skin.HasSetting(List2Discart.movies.enable)">Skin.ToggleSetting(List2Discart.movies.enable)</onclick>
+						<onclick condition="Skin.HasSetting(List2.case)">Skin.ToggleSetting(List2.case)</onclick>						
+					<!--Big List-->	
+						<onclick condition="Skin.HasSetting(BigList2Poster.Glass)">Skin.ToggleSetting(BigList2Poster.Glass)</onclick>
+                        <onclick condition="Skin.HasSetting(BigList2Landscape.Glass)">Skin.ToggleSetting(BigList2Landscape.Glass)</onclick>
+						<onclick condition="Skin.HasSetting(BigList2.case)">Skin.ToggleSetting(BigList2.case)</onclick>						
+					<!--Thumbnails 1-->	
+					    <onclick condition="Skin.HasSetting(icon1.Glass)">Skin.ToggleSetting(Icon1.Glass)</onclick>
+						<onclick condition="Skin.HasSetting(Icon1.case)">Skin.ToggleSetting(Icon1.case)</onclick>			
+					    <onclick condition="Skin.HasSetting(Icon1Landscape.Glass)">Skin.ToggleSetting(Icon1Landscape.Glass)</onclick>			
+					
+					<!--Thumbnails 2-->	
+						<onclick condition="Skin.HasSetting(icon2.Glass)">Skin.ToggleSetting(Icon2.Glass)</onclick>
+						<onclick condition="Skin.HasSetting(Icon2.case)">Skin.ToggleSetting(Icon2.case)</onclick>			
+					    <onclick condition="Skin.HasSetting(Icon2Discart.movies.enable)">Skin.ToggleSetting(Icon2Discart.movies.enable)</onclick>
+						<onclick condition="Skin.HasSetting(Icon2Landscape.Glass)">Skin.ToggleSetting(Icon2Landscape.Glass)</onclick>			
+					
+					<!--Slide -->	
+						<onclick condition="Skin.HasSetting(SlidePoster.Glass)">Skin.ToggleSetting(SlidePoster.Glass)</onclick>
+						<onclick condition="Skin.HasSetting(SlidePoster.case)">Skin.ToggleSetting(SlidePoster.case)</onclick>			
+					    <onclick condition="Skin.HasSetting(SlidePosterDiscart.movies.enable)">Skin.ToggleSetting(SlidePosterDiscart.movies.enable)</onclick>
+						<onclick condition="Skin.HasSetting(SlideLandscape.Glass)">Skin.ToggleSetting(SlideLandscape.Glass)</onclick>			
+					    
+						<onclick condition="Skin.HasSetting(SlideBigPoster.Glass)">Skin.ToggleSetting(SlideBigPoster.Glass)</onclick>
+						<onclick condition="Skin.HasSetting(SlideBigPoster.case)">Skin.ToggleSetting(SlideBigPoster.case)</onclick>			
+					    <onclick condition="Skin.HasSetting(SlideBigLandscape.Glass)">Skin.ToggleSetting(SlideBigLandscape.Glass)</onclick>
+												
+						<selected>Skin.HasSetting(other.enable)</selected> 
+		                <include>settings_Radiobutton</include>			
+                    </control>
+					<!--List-->
+					<control type="label" id="771">
+					    <label>LIST</label>
+					    <font>normal</font>
+				        <textcolor>Color1</textcolor>
+					    <include>settings_Radiobutton</include>
+					</control>
+					<control type="radiobutton" id="772">					
+                        <label> - List Glass Poster - </label>
+		                <onclick>Skin.ToggleSetting(List2Poster.Glass)</onclick>
+		                <selected>Skin.HasSetting(List2Poster.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="773">					
+                        <label> - List Glass Landscape - </label>
+		                <onclick>Skin.ToggleSetting(List2Landscape.Glass)</onclick>
+		                <selected>Skin.HasSetting(List2Landscape.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="774">					
+                        <label> - List Discart - </label>
+		                <onclick>Skin.ToggleSetting(List2Discart.movies.enable)</onclick>
+		                <selected>Skin.HasSetting(List2Discart.movies.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="775">					
+                        <label> - List Case - </label>
+		                <onclick>Skin.ToggleSetting(List2.case)</onclick>
+		                <selected>Skin.HasSetting(List2.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<!--Big List-->
+					<control type="label" id="776">
+					    <label>BIG LIST</label>
+					    <font>normal</font>
+				        <textcolor>Color1</textcolor>
+					    <include>settings_Radiobutton</include>
+					</control>
+					<control type="radiobutton" id="777">					
+                        <label> - Big List Glass Poster - </label>
+		                <onclick>Skin.ToggleSetting(BigList2Poster.Glass)</onclick>
+		                <selected>Skin.HasSetting(BigList2Poster.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="778">					
+                        <label> - Big List Glass Landscape - </label>
+		                <onclick>Skin.ToggleSetting(BigList2Landscape.Glass)</onclick>
+		                <selected>Skin.HasSetting(BigList2Landscape.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="779">					
+                        <label> - Big List Case - </label>
+		                <onclick>Skin.ToggleSetting(BigList2.case)</onclick>
+		                <selected>Skin.HasSetting(BigList2.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<control type="label" id="7790">
+					    <label>THUMBNAILS</label>
+					    <font>normal</font>
+				        <textcolor>Color1</textcolor>
+					    <include>settings_Radiobutton</include>
+					</control>
+					<!--Thumbnails -->				
+				    <control type="radiobutton" id="780">					
+                        <label> - Thumbnails Glass - </label>
+		                <onclick>Skin.ToggleSetting(Icon1.Glass)</onclick>
+		                <selected>Skin.HasSetting(Icon1.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="781">					
+                        <label> - Thumbnails Case - </label>
+		                <onclick>Skin.ToggleSetting(Icon1.case)</onclick>
+		                <selected>Skin.HasSetting(Icon1.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>					
+					<control type="radiobutton" id="7810">					
+                        <label> - Thumbnails Landscape Glass - </label>
+		                <onclick>Skin.ToggleSetting(Icon1Landscape.Glass)</onclick>
+		                <selected>Skin.HasSetting(Icon1Landscape.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<!-- Thumbnails Small-->
+					<control type="label" id="782">
+					    <label>THUMBNAILS Small</label>
+					    <font>normal</font>
+				        <textcolor>Color1</textcolor>
+					    <include>settings_Radiobutton</include>
+					</control>
+					 <control type="radiobutton" id="783">					
+                        <label> - Thumbnails Small  Glass - </label>
+		                <onclick>Skin.ToggleSetting(Icon2.Glass)</onclick>
+		                <selected>Skin.HasSetting(Icon2.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="784">					
+                        <label> - Thumbnails Small Case - </label>
+		                <onclick>Skin.ToggleSetting(Icon2.case)</onclick>
+		                <selected>Skin.HasSetting(Icon2.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="785">					
+                        <label> - Thumbnails Small Discart - </label>
+		                <onclick>Skin.ToggleSetting(Icon2Discart.movies.enable)</onclick>
+		                <selected>Skin.HasSetting(Icon2Discart.movies.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					 <control type="radiobutton" id="7850">					
+                        <label> - Thumbnails Small Landscape Glass - </label>
+		                <onclick>Skin.ToggleSetting(Icon2Landscape.Glass)</onclick>
+		                <selected>Skin.HasSetting(Icon2Landscape.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>					
+					<!-- Thumbnails Small Alt-->
+					<control type="label" id="7860">
+					    <label>THUMBNAILS Small Alt</label>
+					    <font>normal</font>
+				        <textcolor>Color1</textcolor>
+					    <include>settings_Radiobutton</include>
+					</control>
+					 <control type="radiobutton" id="786">					
+                        <label> - Thumbnails Small Alt Glass - </label>
+		                <onclick>Skin.ToggleSetting(Icon2SmallAlt.Glass)</onclick>
+		                <selected>Skin.HasSetting(Icon2SmallAlt.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="787">					
+                        <label> - Thumbnails Small Alt Case - </label>
+		                <onclick>Skin.ToggleSetting(Icon2SmallAlt.case)</onclick>
+		                <selected>Skin.HasSetting(Icon2SmallAlt.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>					
+					
+					<!-- Thumbnails Original-->
+					<control type="label" id="7880">
+					    <label>THUMBNAILS Small Original</label>
+					    <font>normal</font>
+				        <textcolor>Color1</textcolor>
+					    <include>settings_Radiobutton</include>
+					</control>
+					 <control type="radiobutton" id="788">					
+                        <label> - Thumbnails Small Original Glass - </label>
+		                <onclick>Skin.ToggleSetting(Icon2SmallOrg.Glass)</onclick>
+		                <selected>Skin.HasSetting(Icon2SmallOrig.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="789">					
+                        <label> - Thumbnails Small Original Case - </label>
+		                <onclick>Skin.ToggleSetting(Icon2SmallOrg.case)</onclick>
+		                <selected>Skin.HasSetting(Icon2SmallOrg.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					
+					<!-- Thumbnails Full-->
+					<control type="label" id="7900">
+					    <label>THUMBNAILS Full</label>
+					    <font>normal</font>
+				        <textcolor>Color1</textcolor>
+					    <include>settings_Radiobutton</include>
+					</control>
+					 <control type="radiobutton" id="790">					
+                        <label> - Thumbnails Full Glass - </label>
+		                <onclick>Skin.ToggleSetting(Icon2Full.Glass)</onclick>
+		                <selected>Skin.HasSetting(Icon2Full.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<!-- Slide -->
+					<control type="label" id="7901">
+					    <label>Slide</label>
+					    <font>normal</font>
+				        <textcolor>Color1</textcolor>
+					    <include>settings_Radiobutton</include>
+					</control>
+					<control type="radiobutton" id="7902">					
+                        <label> - Slide Poster Glass - </label>
+		                <onclick>Skin.ToggleSetting(SlidePoster.Glass)</onclick>
+		                <selected>Skin.HasSetting(SlidePoster.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="7903">					
+                        <label> - Slide Poster Case - </label>
+		                <onclick>Skin.ToggleSetting(SlidePoster.case)</onclick>
+		                <selected>Skin.HasSetting(SlidePoster.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="7904">					
+                        <label> - Slide Poster Discart - </label>
+		                <onclick>Skin.ToggleSetting(SlidePosterDiscart.movies.enable)</onclick>
+		                <selected>Skin.HasSetting(SlidePosterDiscart.movies.enable)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="7905">					
+                        <label> - Slide Landscape Glass - </label>
+		                <onclick>Skin.ToggleSetting(SlideLandscape.Glass)</onclick>
+		                <selected>Skin.HasSetting(SlideLandscape.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="7906">					
+                        <label> - Slide Big Poster Glass - </label>
+		                <onclick>Skin.ToggleSetting(SlideBigPoster.Glass)</onclick>
+		                <selected>Skin.HasSetting(SlideBigPoster.Glass)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="7907">					
+                        <label> - Slide Big Poster Case - </label>
+		                <onclick>Skin.ToggleSetting(SlideBigPoster.case)</onclick>
+		                <selected>Skin.HasSetting(SlideBigPoster.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>
+					<control type="radiobutton" id="7908">					
+                        <label> - Slide Big Poster& Landscape Glass - </label>
+		                <onclick>Skin.ToggleSetting(SlideBigLandscape.case)</onclick>
+		                <selected>Skin.HasSetting(SlideBigLandscape.case)</selected>
+						<include>settings_Radiobutton</include>
+						<visible>Skin.HasSetting(other.enable)</visible>
+		            </control>									
+					<control type="label" id="791">
+					    <label>Other Glass ( banner,Addon,Music etc ) </label>
+					    <font>normal</font>
+				        <textcolor>Color1</textcolor>
+					    <include>settings_Radiobutton</include>
+					</control>
+					<control type="radiobutton" id="792">					
+                         <label>Enable Glass Landscape</label>
+		                 <onclick>Skin.ToggleSetting(Enable.Glass_Landscape)</onclick>
+		                 <selected>Skin.HasSetting(Enable.Glass_Landscape)</selected>
+						 <include>settings_Radiobutton</include>
+		            </control>
+					<control type="radiobutton" id="793">					
+                        <label>Enable Glass Banner</label>
+		                <onclick>Skin.ToggleSetting(Enable.Glassbanner)</onclick>
+		                <selected>Skin.HasSetting(Enable.Glassbanner)</selected>
+						<include>settings_Radiobutton</include>
+		            </control>
+					<control type="radiobutton" id="794">					
+                        <label>Enable Glass Settings</label>
+		                <onclick>Skin.ToggleSetting(Enable.Glasssettings)</onclick>
+		                <selected>Skin.HasSetting(Enable.Glasssettings)</selected>
+						<include>settings_Radiobutton</include>
+		            </control>
+				 </control>
+			<!--SKIN CREDITS-->			
+				<control type="grouplist" id="800">
+					<width>850</width>
+					<height>598</height>
+					<onleft>9001</onleft>
+					<onright>70</onright>
+					<onup>800</onup>
+					<ondown>800</ondown>
+					<itemgap>2</itemgap>
+					<pagecontrol>70</pagecontrol>
+					<visible>Skin.String(SkinSettings,Credits)</visible>
+					<control type="button" id="801">
+						<label>[UPPERCASE]Skin Design + Development[/UPPERCASE]</label>
+						<onclick>noop</onclick>
+						<textcolor>Color2</textcolor>
+						<include>settings_Listbutton</include>
+					</control>
+					<control type="button" id="802">
+						<label>Jeroen Pardon</label>
+						<onclick>noop</onclick> 
+						<include>settings_Listbutton</include>
+					</control>
+					<control type="button" id="803">
+						<label>[UPPERCASE]MOD Design[/UPPERCASE]</label>
+						<onclick>noop</onclick>
+						<textcolor>Color2</textcolor>
+						<include>settings_Listbutton</include>
+					</control>
+					<control type="button" id="804">
+						<label>Reynald ( Update Refocus Glass V4 with Refocus 1.4 )</label>
+						<onclick>noop</onclick> 
+						<include>settings_Listbutton</include>
+					</control>					
+					<control type="button" id="805">
+						<label>[UPPERCASE]Special Thanks[/UPPERCASE]</label>
+						<onclick>noop</onclick>
+						<textcolor>Color2</textcolor>
+						<include>settings_Listbutton</include>
+					</control>
+					<control type="button" id="806">
+						<label>Team-XBMC, the XBMC Community, and YOU for using reFocus!</label>
+						<onclick>noop</onclick> 
+						<include>settings_Listbutton</include>
+					</control>
+					<control type="button" id="807">
+						<label>[UPPERCASE]Attribution[/UPPERCASE]</label>
+						<onclick>noop</onclick>
+						<textcolor>Color2</textcolor>
+						<include>settings_Listbutton</include>
+					</control>
+					<control type="button" id="808">
+						<label>Climacons by Adam Whitcroft - [B]adamwhitcroft.com/climacons[/B]</label>
+						<onclick>noop</onclick> 
+						<include>settings_Listbutton</include>
+					</control>
+					<control type="button" id="810">
+						<label>[UPPERCASE]Translations[/UPPERCASE]</label>
+						<onclick>noop</onclick>
+						<textcolor>Color2</textcolor>
+						<include>settings_Listbutton</include>
+					</control>
+					<control type="group">
+						<height>180</height>
+						<control type="grouplist">
+							<width>283</width>
+							<itemgap>2</itemgap>
+							<control type="button" id="811">
+								<label>[B]Bulgarian: [/B]NEOhidra</label>
+								<width>283</width>
+								<onclick>noop</onclick> 
+								<include>settings_Listbutton</include>
+							</control>
+							<control type="button" id="812">
+								<label>[B]Czech: [/B]rosiste</label>
+								<width>283</width>
+								<onclick>noop</onclick> 
+								<include>settings_Listbutton</include>
+							</control>
+							<control type="button" id="813">
+								<label>[B]Danish: [/B]LoADrunner</label>
+								<width>283</width>
+								<onclick>noop</onclick> 
+								<include>settings_Listbutton</include>
+							</control>
+							<control type="button" id="814">
+								<label>[B]Finnish: [/B]ZZRX</label>
+								<width>283</width>
+								<onclick>noop</onclick> 
+								<include>settings_Listbutton</include>
+							</control>
+						</control>
+						<control type="grouplist">
+							<left>285</left>
+							<width>283</width>
+							<itemgap>2</itemgap>
+							<control type="button" id="821">
+								<label>[B]French: [/B]legostrike &amp; Frisson</label>
+								<width>283</width>
+								<onclick>noop</onclick> 
+								<include>settings_Listbutton</include>
+							</control>
+							<control type="button" id="822">
+								<label>[B]Italian: [/B]peppe_sr</label>
+								<width>283</width>
+								<onclick>noop</onclick> 
+								<include>settings_Listbutton</include>
+							</control>
+							<control type="button" id="823">
+								<label>[B]Korean: [/B]epoke</label>
+								<width>283</width>
+								<onclick>noop</onclick> 
+								<include>settings_Listbutton</include>
+							</control>
+							<control type="button" id="824">
+								<label>[B]Polish: [/B]Okashu</label>
+								<width>283</width>
+								<onclick>noop</onclick> 
+								<include>settings_Listbutton</include>
+							</control>
+						</control>
+						<control type="grouplist">
+							<left>570</left>
+							<width>283</width>
+							<itemgap>2</itemgap>
+							<control type="button" id="832">
+								<label>[B]Portuguese: [/B]fabiodacosta</label>
+								<width>283</width>
+								<onclick>noop</onclick> 
+								<include>settings_Listbutton</include>
+							</control>
+							<control type="button" id="833">
+								<label>[B]Romanian: [/B]Galefury</label>
+								<width>283</width>
+								<onclick>noop</onclick> 
+								<include>settings_Listbutton</include>
+							</control>
+							<control type="button" id="834">
+								<label>[B]Swedish: [/B]Diazz &amp; thedarer</label>
+								<width>283</width>
+								<onclick>noop</onclick> 
+								<include>settings_Listbutton</include>
+							</control>
+							<control type="button" id="835">
+								<label>[B]Spanish: [/B]Seque</label>
+								<width>283</width>
+								<onclick>noop</onclick> 
+								<include>settings_Listbutton</include>
+							</control>
+						</control>
+					</control>
+					<control type="button" id="840">
+						<label>[UPPERCASE]Final Note[/UPPERCASE]</label>
+						<onclick>noop</onclick>
+						<textcolor>Color2</textcolor>
+						<include>settings_Listbutton</include>
+					</control>
+					<control type="button" id="841">
+						<label>Please consider supporting the development of xbmc - [B]xbmc.org/contribute/[/B]</label>
+						<onclick>noop</onclick> 
+						<include>settings_Listbutton</include>
+					</control>
+				</control>	
+			</control>
+		</control>
+		<control type="scrollbar" id="70">
+			<left>1272</left>
+			<height>screen_Height</height>
+			<onleft>9001</onleft>
+		</control>
+		<control type="image">
+			<left>75</left>
+			<top>600</top>
+			<width>280</width>
+			<texture>logos/refocuslogo.png</texture>
+			<aspectratio align="left">keep</aspectratio>
+			<include>transition_Content</include>
+		</control>
+	</controls>
+</window>
