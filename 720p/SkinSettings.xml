@@ -1579,7 +1579,7 @@
 						<include>settings_Listbutton</include>
 					</control>
 					<control type="button" id="804">
-						<label>Reynald ( Update Refocus Glass V4 with Refocus 1.4 )</label>
+						<label>Reynald ( Update Refocus Glass 1.4.0 )</label>
 						<onclick>noop</onclick> 
 						<include>settings_Listbutton</include>
 					</control>					

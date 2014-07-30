@@ -51,7 +51,7 @@
 						<control type="image">
 							<width>320</width>
 							<height>49</height>
-							<texture colordiffuse="base_3"></texture>
+							<texture colordiffuse="base_3">white.png</texture>
 							<visible>IsEmpty(ListItem.Property(isSubmenu))</visible>
 						</control>
 						<control type="image">
@@ -118,9 +118,9 @@
 							<width>20</width>
 							<height>43</height>
 							<label>›</label>
-							<font>light_Home</font>
+							<font>light_Window2</font>
 							<align>right</align>
-							<textcolor>Color3</textcolor>
+							<textcolor>Color2</textcolor>
 							<visible>!IsEmpty(ListItem.Property(hasSubmenu))</visible>
 							<visible>!StringCompare(ListItem.Property("submenuVisibility"),Window(10000).Property("submenuVisibility") )</visible>
 						</control>
